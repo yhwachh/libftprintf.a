@@ -17,50 +17,52 @@
 # include <stdio.h>
 
 
-
-const char  *ft_write_text(int *len, const char *format)
+int	ft_print_format(int c)
 {
-    char *str;
-
-    
+	write(1, &c, 1);
+	return (1);
 }
 
-
-int     ft_printf(const char *format, ...)
+int	ft_find_format(va_list ap,const char format)
 {
-    int     len;
-    int     i; 
-    va_list arg;
+	int	len;
 
-    len = 0;
-    va_start(arg,format);
-    while(*format)
-    {
-        if(!format)
-        {
-            write(1,"(null)",6);
-            va_end(arg);
-            return(len);
-        }
-        if (*format == '%')
-        {
-            format = ft_find_arg(arg, format + 1, &len);
-        }
-        else
-        {
-           format = ft_write_text(&len, format);
-        }
-    }
-    va_end(arg);
-    return(len);
+	len = 0;
+	if (format == 'c')
+	{
+		len = len + ft_print_format(va_arg(ap,int));
+	}
+
+	return(len);
 }
 
-int main()
+int	ft_printf(const char *format, ...)
 {
-    int len = ft_printf("qwerty %s\n", "ok");
-    int len2 = printf("qwerty %s\n", "ok");
+	int		i;
+	va_list	ap;
+	int		len;
 
+	i = 0;
+	len = 0;
+	va_start(ap, format);
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			len = len + ft_find_format(ap, format[i + 1]);
+			i++;
+		}
+		else
+			len = len + ft_print_format(format[i]);
+		i++;
+	}
+	va_end(ap);
+	return (len);
+}
 
-    printf("qwerty %d\n", len);
-    printf("qwerty %d\n", len2);
+int	main(void)
+{
+	char c = 'd';
+	ft_printf("yu gi %coh\n",c);
+	printf("yu gi %coh\n",c);
 }
