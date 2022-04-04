@@ -175,7 +175,7 @@ int	ft_num_len(unsigned	int num)
 	return (len);
 }
 
-char	*ft_uitoa(unsigned int n)
+char	*ft_nitoa(unsigned int n)
 {
 	char	*num;
 	int		len;
@@ -201,11 +201,11 @@ int	ft_print_unsigned_decimal(unsigned int n)
 
 	len = 0;
 	if (n == 0)
-		len += write(1, "0", 1);
+		len = len + write(1, "0", 1);
 	else
 	{
-		num = ft_uitoa(n);
-		len += ft_print_str(num);
+		num = ft_nitoa(n);
+		len = len + ft_print_str(num);
 		free(num);
 	}
 	return (len);
