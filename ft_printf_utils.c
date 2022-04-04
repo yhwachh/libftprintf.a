@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:09:23 by ibalbako          #+#    #+#             */
-/*   Updated: 2022/04/04 11:09:29 by ibalbako         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:47:40 by ibalbako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_print_caracter(int c)
 
 int	ft_print_percent(void)
 {
-	write(1 ,"%", 1);
+	write(1, "%", 1);
 	return (1);
 }
 
@@ -50,9 +50,9 @@ int	ft_print_str(char *s)
 		ft_putstr_fd("(null)", 1);
 		return (6);
 	}
-	while(s[i])
+	while (s[i])
 	{
-		write(1 ,&s[i], 1);
+		write(1, &s[i], 1);
 		i++;
 	}
 	return (i);
